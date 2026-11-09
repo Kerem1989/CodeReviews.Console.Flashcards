@@ -1,6 +1,8 @@
-﻿namespace Kerem.Flashcards.Domain.Interfaces ;
+﻿using Kerem.Flashcards.Domain.Entities;
+
+namespace Kerem.Flashcards.Domain.Interfaces ;
 
     public interface IFlashcardRepository
     {
-        void Create();
+        void Create(Flashcard flashcard);
     }

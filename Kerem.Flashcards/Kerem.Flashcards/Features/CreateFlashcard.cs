@@ -1,4 +1,5 @@
-﻿using Kerem.Flashcards.Domain.Interfaces;
+﻿using Kerem.Flashcards.Domain.Entities;
+using Kerem.Flashcards.Domain.Interfaces;
 
 namespace Kerem.Flashcards.Features ;
 
@@ -11,7 +12,10 @@ namespace Kerem.Flashcards.Features ;
             _flashcardRepository = flashcardRepository;
         }
 
-        void Create()
+        public void Create()
         {
+            Flashcard flashcard = new Flashcard();
+            flashcard.Name = "Testcard";
+            _flashcardRepository.Create(flashcard);
         }
     }
