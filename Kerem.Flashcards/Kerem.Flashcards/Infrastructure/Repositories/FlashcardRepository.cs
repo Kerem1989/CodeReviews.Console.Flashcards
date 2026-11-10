@@ -21,4 +21,12 @@ namespace Kerem.Flashcards.Infrastructure.Repositories;
             var sql = "INSERT INTO Flashcard (name) VALUES (@Name)";
             connection.Execute(sql, flashcard);
         }
+
+        public List<Flashcard> FindAll()
+        {
+            var connection = _dapperDbContext.GetConnection();
+            var sql = "SELECT * FROM Flashcard";
+            List<Flashcard> list = connection.Query<Flashcard>(sql).ToList();
+            return list;
+        }
     }

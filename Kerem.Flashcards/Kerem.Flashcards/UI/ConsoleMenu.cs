@@ -1,17 +1,17 @@
-﻿using System.Drawing;
-using Kerem.Flashcards.Features;
+﻿using Kerem.Flashcards.Features;
 using Spectre.Console;
-using Color = System.Drawing.Color;
 
 namespace Kerem.Flashcards.UI;
 
     public class ConsoleMenu
     {
         private readonly CreateFlashcard _createFlashcard;
+        private readonly FindAllFlashcards _findAllFlashcards;
 
-        public ConsoleMenu(CreateFlashcard createFlashcard)
+        public ConsoleMenu(CreateFlashcard createFlashcard, FindAllFlashcards findAllFlashcards)
         {
             _createFlashcard = createFlashcard;
+            _findAllFlashcards = findAllFlashcards;
         }
 
         public void Menu()
@@ -23,8 +23,9 @@ namespace Kerem.Flashcards.UI;
                     new SelectionPrompt<string>()
                         .Title("Please select an [bold steelblue]option[/]:")
                         .AddChoices(
-                            "1. Create a coding session",
-                            "2. Exit"));
+                            "1. Create a flashcard",
+                            "2. Display all flashcards",
+                            "3. Exit"));
 
                 switch (choice[0])
                 {
@@ -32,6 +33,9 @@ namespace Kerem.Flashcards.UI;
                         _createFlashcard.Create();
                         break;
                     case '2':
+                        _findAllFlashcards.FindAll();
+                        break;
+                    case '3':
                         AnsiConsole.MarkupLine("[bold green]Goodbye![/]");
                         return;
                 }

@@ -14,6 +14,7 @@ namespace Kerem.Flashcards;
             services.AddSingleton(new DapperDbContext(connectionString));
             services.AddSingleton<IFlashcardRepository, FlashcardRepository>();
             services.AddSingleton<CreateFlashcard>();
+            services.AddSingleton<FindAllFlashcards>();
             services.AddSingleton<ConsoleMenu>();
             return services;
         }   

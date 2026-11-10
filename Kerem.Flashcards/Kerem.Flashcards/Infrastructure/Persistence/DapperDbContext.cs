@@ -48,6 +48,7 @@ namespace Kerem.Flashcards.Infrastructure.Persistence;
                     CREATE TABLE Flashcards (
                         Id INT PRIMARY KEY IDENTITY(1,1),
                         Name NVARCHAR(255) NOT NULL
+            
                     );
                 END
             """;
