@@ -14,5 +14,5 @@ var builder = new ConfigurationBuilder()
         .AddApplication(connectionString)
         .BuildServiceProvider();
     var connection = serviceProvider.GetRequiredService<DapperDbContext>().GetConnection();
-    serviceProvider.GetRequiredService<DapperDbContext>().DatabaseInit(connection);
+    serviceProvider.GetRequiredService<DapperDbContext>().DbInit(connection);
     serviceProvider.GetRequiredService<ConsoleMenu>().Menu();

@@ -35,21 +35,24 @@ namespace Kerem.Flashcards.Infrastructure.Persistence;
             }
         }
 
-        public void DatabaseInit(IDbConnection connection)
+        public void DbInit(IDbConnection connection)
         {
             var sql = """
-            IF (OBJECT_ID('Flashcards') IS NOT NULL )
+            IF (OBJECT_ID('Stacks') IS NOT NULL )
                 BEGIN
                     PRINT 'Table with the same name available'
                 END
             ELSE
                 BEGIN
-                    PRINT 'No Table available with this name. Let us create a new table'
-                    CREATE TABLE Flashcards (
-                        Id INT PRIMARY KEY IDENTITY(1,1),
-                        Name NVARCHAR(255) NOT NULL
-            
-                    );
+            PRINT 'No Table available with this name. Let us create a new table'
+            CREATE TABLE Stacks (
+                Id INT PRIMARY KEY IDENTITY(1,1),
+                Name NVARCHAR(255) NOT NULL);        
+            CREATE TABLE Flashcards (
+                Id INT PRIMARY KEY IDENTITY(1,1),
+                Name NVARCHAR(255) NOT NULL,
+                StackId INT,
+                FOREIGN KEY (StackId) REFERENCES Stacks(Id) ON DELETE CASCADE);
                 END
             """;
             connection.Execute(sql);
